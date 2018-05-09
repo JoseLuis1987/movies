@@ -10,6 +10,7 @@ target 'AppIOS' do
      pod 'SwiftyJSON'
      pod 'KeychainSwift', '~> 8.0'
 	 pod 'PKHUD', '~> 5.0'
+	 pod 'MobilePlayer'
   	# Pods for AppIOS
 
 end

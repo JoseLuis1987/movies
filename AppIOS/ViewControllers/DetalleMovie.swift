@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 import Kingfisher
+import MobilePlayer
+import AVFoundation
+import MediaPlayer
+import AudioToolbox
 
 class DetalleMovie: UIViewController {
     @IBOutlet weak var imagePoster: UIImageView!
@@ -22,6 +26,18 @@ class DetalleMovie: UIViewController {
     @IBAction func regresar(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func playTrailer(_ sender: Any) {
+        self.playTrailerWithURL(url: "https://www.youtube.com/watch?reload=9&v=wJbudwIF0cE#action=share", name: self.movie.original_title)
+    }
+    func playTrailerWithURL(url: String , name: String) {
+        guard let urlVideo = URL(string: url) else { return }
+        let playerVC = MobilePlayerViewController(contentURL: urlVideo as URL)
+        playerVC.title = "IOS APP - \(name)"
+        playerVC.activityItems = [url]
+       self.presentMoviePlayerViewControllerAnimated(playerVC)
+    }
+    
     func setDetaill(movie: Movie){
         titleMoview.text = movie.original_title
         detalleMovie.text = movie.overview
